@@ -1,12 +1,8 @@
 var express = require('express');
-var router = express.Router();
+var routes = express.Router();
+const posts = require('./posts');
+
+routes.use('./posts',posts.route());
 
 
-
-// GET home page. 
-router.get('/', (req, res, next) => {
-  res.send('Home');
-});
-
-
-module.exports = router;
+module.exports = routes;
