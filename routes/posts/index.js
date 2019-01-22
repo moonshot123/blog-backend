@@ -1,13 +1,23 @@
 var express = require('express');
-var posts = express.Router();
-const postctrl =require('./posts.ctrl')
+var router = express.Router();
+const postctrl =require('./posts.ctrl');
 
-posts.get('/', postctrl.list);
-posts.post('/', postctrl.write);
-posts.get('/:id', postctrl.read);
-posts.delete('/:id', postctrl.remove);
-posts.put('/:id', postctrl.replace);
-posts.patch('/:id', postctrl.update);
+console.log('routes > posts > index');
 
+router.get('/', postctrl.list);
+router.post('/', postctrl.write);
+router.post('/read/:id', postctrl.read);
+router.post('/remove/:id', postctrl.remove);
+router.post('/replace/:id', postctrl.replace);
+router.post('/update/:id', postctrl.update);
 
-module.exports = posts;
+/*
+router.get('/', postctrl.list);
+router.post('/', postctrl.write);
+router.get('/:id', postctrl.read);
+router.delete('/:id', postctrl.remove);
+router.put('/:id', postctrl.replace);
+router.patch('/:id', postctrl.update);
+*/
+
+module.exports = router;

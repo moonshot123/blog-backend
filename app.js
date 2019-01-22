@@ -4,8 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var router = express.Router();
-var indexRouter = require('./routes');
+//var Routers = require('./routes');
+//const router = express.Router();
 
 var app = express();
 
@@ -13,16 +13,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// 라우터설정
+//router.route('/routes');//, Routers
+
+//라우터 설정
+app.use('/routes/posts', require('./routes/posts'));
+
+
+
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-router.use('/routes',indexRouter.route());
+console.log('app check');
+
+//경로설정
+//app.use('/routes',router);
 
 // catch 404 and forward to error handler
-
 app.use(function(req, res, next) {
   next(createError(404));
 });
